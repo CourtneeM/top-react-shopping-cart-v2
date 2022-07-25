@@ -6,7 +6,7 @@ import uniqid from 'uniqid';
 const Shop = (props) => {
   return (
     <div>
-      <Navbar storeName={props.storeName} numCartItems={props.numCartItems} />
+      <Navbar numCartItems={props.numCartItems} />
       <h1>Shop</h1>
 
       {productData.map((product) => {

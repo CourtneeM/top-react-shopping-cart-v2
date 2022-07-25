@@ -4,14 +4,14 @@ import App from './App';
 import Shop from './Components/Shop';
 import CartPage from './Components/CartPage';
 import ProductPage from './Components/ProductPage';
+import Checkout from './Components/Checkout';
+import PurchaseComplete from './Components/PurchaseComplete';
 import productData from './productData';
 
 const RouteSwitch = () => {
   let [shoppingCart, setShoppingCart] = useState([]);
   let [numCartItems, setNumCartItems] = useState(0);
   
-  const storeName = 'Bargain Shop';
-
   const handleAddToCart = (product, count) => {
     let shoppingCartCopy = [...shoppingCart];
     let productInCart = false;
@@ -45,9 +45,9 @@ const RouteSwitch = () => {
     shoppingCartCopy.forEach((cartProduct) => {
       if (cartProduct.product.id === product.id) {
         if (newCount > cartProduct.count) {
-          setNumCartItems(numCartItems + 1);
+          setNumCartItems(numCartItems + (newCount - cartProduct.count));
         } else {
-          setNumCartItems(numCartItems - 1);
+          setNumCartItems(numCartItems - (cartProduct.count - newCount));
         }
         
         cartProduct.count = newCount;
@@ -58,14 +58,18 @@ const RouteSwitch = () => {
     setShoppingCart(shoppingCartCopy);
   }
 
+  const clearCart = () => {
+    setShoppingCart([]);
+    setNumCartItems(0);
+  }
+
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<App storeName={storeName} />} />
+        <Route path="/" element={<App />} />
         <Route path="/shop"
           element={
             <Shop
-              storeName={storeName}
               numCartItems={numCartItems}
               handleAddToCart={handleAddToCart}
             />
@@ -73,7 +77,17 @@ const RouteSwitch = () => {
         >
           { productData.map((product) => <Route path={product.id} element={<ProductPage product={product} />} />) }
         </Route>
-        <Route path="/cart" element={<CartPage shoppingCart={shoppingCart} numCartItems={numCartItems} handleRemoveFromCart={handleRemoveFromCart} handleEditCartCount={handleEditCartCount} />} />
+        <Route path="/cart"
+          element={
+            <CartPage
+              shoppingCart={shoppingCart}
+              numCartItems={numCartItems}
+              handleRemoveFromCart={handleRemoveFromCart}
+              handleEditCartCount={handleEditCartCount}
+            />}
+        />
+        <Route path="/checkout" element={<Checkout shoppingCart={shoppingCart} numCartItems={numCartItems} clearCart={clearCart} />} />
+        <Route path="/purchase-complete" element={<PurchaseComplete numCartItems={numCartItems} />} />
       </Routes>
     </BrowserRouter>
   );

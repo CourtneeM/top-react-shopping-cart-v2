@@ -4,7 +4,9 @@ import CartNav from './CartNav';
 const Navbar = (props) => {
   return (
     <div>
-      <h1>{props.storeName}</h1>
+      <Link to="/shop">
+        <h1>Bargain Shop</h1>
+      </Link>
       <Link to="/cart">
         <CartNav numCartItems={props.numCartItems} />
       </Link>

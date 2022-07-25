@@ -1,9 +1,9 @@
 import Home from './Components/Home.js';
 
-function App(props) {
+function App() {
   return (
     <div className="App">
-      <Home storeName={props.storeName} />
+      <Home storeName="Bargain Shop" />
     </div>
   );
 }
