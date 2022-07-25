@@ -1,10 +1,13 @@
+import { Link } from 'react-router-dom';
 import CartNav from './CartNav';
 
 const Navbar = (props) => {
   return (
     <div>
       <h1>{props.storeName}</h1>
-      <CartNav numCartItems={props.numCartItems} />
+      <Link to="/cart">
+        <CartNav numCartItems={props.numCartItems} />
+      </Link>
     </div>
   );
 };

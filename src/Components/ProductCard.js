@@ -17,7 +17,7 @@ const ProductCard = (props) => {
         <button onClick={decrementCount}>-</button>
         <p>{count}</p>
         <button onClick={incrementCount}>+</button>
-        <button onClick={() => props.handleAddToCart(props.product, count)}>Add to cart</button>
+        <button onClick={() => count ? props.handleAddToCart(props.product, count) : null}>Add to cart</button>
       </div>
     </div>
   );
