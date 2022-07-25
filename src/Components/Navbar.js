@@ -4,7 +4,7 @@ const Navbar = (props) => {
   return (
     <div>
       <h1>{props.storeName}</h1>
-      <CartNav />
+      <CartNav numCartItems={props.numCartItems} />
     </div>
   );
 };

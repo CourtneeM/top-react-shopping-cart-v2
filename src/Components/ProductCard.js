@@ -1,7 +1,24 @@
+import React, { useState } from 'react';
+
 const ProductCard = (props) => {
+  const name = props.product.name;
+  const image = props.product.image;
+  
+  let [count, setCount] = useState(0);
+
+  const decrementCount = () => count <= 0 ? null : setCount(count -= 1);
+  const incrementCount = () => setCount(count += 1);
+
   return (
-    <div>
-      <h1>{props.name} - {props.id}</h1>
+    <div className="product-card-container">
+      <img src={image} alt={name} />
+      <p>{name}</p>
+      <div>
+        <button onClick={decrementCount}>-</button>
+        <p>{count}</p>
+        <button onClick={incrementCount}>+</button>
+        <button onClick={() => props.handleAddToCart(props.product, count)}>Add to cart</button>
+      </div>
     </div>
   );
 };
