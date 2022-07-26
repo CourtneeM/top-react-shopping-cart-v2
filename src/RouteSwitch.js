@@ -71,6 +71,7 @@ const RouteSwitch = () => {
           element={
             <Shop
               numCartItems={numCartItems}
+              productData={productData}
               handleAddToCart={handleAddToCart}
             />
           }

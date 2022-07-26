@@ -59,7 +59,7 @@ const CartPage = (props) => {
       <div className="shopping-cart-container">
         <h1>Shopping Cart</h1>
 
-        { props.numCartItems ? displayCart() : <p>Your cart is currently empty!</p> }
+        { props.numCartItems ? displayCart() : <p className="empty-cart-message">Your cart is currently empty!</p> }
       </div>
     </div>
   )

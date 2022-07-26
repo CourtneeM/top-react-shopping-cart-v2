@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
+import '../../styles/checkout.scss';
 
 const Checkout = (props) => {
   let cartTotal = 0;
@@ -7,32 +8,40 @@ const Checkout = (props) => {
   return (
     <div>
       <Navbar numCartItems={props.numCartItems} />
-      <h1>Checkout</h1>
 
-      {
-        props.shoppingCart.map((cartProduct) => {
-          const { name, price, image } = cartProduct.product
-          const count = Number(cartProduct.count);
-          const productTotal = (Number(price) * count).toFixed(2);
-          cartTotal += Number(productTotal);
+      <div className="checkout-container">
+        <h1>Checkout</h1>
 
-          return (
-            <div>
-              <img src={image} alt={name} />
-              <p>{name}</p>
-              <p>Quantity: {count}</p>
-              <p>Total Price: ${productTotal}</p>
-            </div>
-          )
-        })
-      }
+        {
+          props.shoppingCart.map((cartProduct) => {
+            const { name, price, image } = cartProduct.product
+            const count = Number(cartProduct.count);
+            const productTotal = (Number(price) * count).toFixed(2);
+            cartTotal += Number(productTotal);
 
-      <div>
-        <p>Cart Total: ${cartTotal}</p>
-        <Link to="/purchase-complete">
-          <button onClick={props.clearCart}>Buy Now</button>
-        </Link>
+            return (
+              <div className="product-container">
+                <div>
+                  <img src={image} alt={name} />
+                  <p className="product-name">{name}</p>
+                </div>
+                <div>
+                  <p>Quantity: {count}</p>
+                  <p>Total Price: ${productTotal}</p>
+                </div>
+              </div>
+            )
+          })
+        }
+
+        <div className="cart-total-container">
+          <p>Cart Total: ${cartTotal}</p>
+          <Link to="/purchase-complete" className="default-link">
+            <button onClick={props.clearCart}>Buy Now</button>
+          </Link>
+        </div>
       </div>
+
     </div>
   );
 };
