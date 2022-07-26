@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import App from './App';
 import Shop from './Components/Shop';
-import CartPage from './Components/CartPage';
-import ProductPage from './Components/ProductPage';
-import Checkout from './Components/Checkout';
-import PurchaseComplete from './Components/PurchaseComplete';
+import CartPage from './Components/Checkout/CartPage';
+import ProductPage from './Components/Product/ProductPage';
+import Checkout from './Components/Checkout/Checkout';
+import PurchaseComplete from './Components/Checkout/PurchaseComplete';
 import productData from './productData';
 
 const RouteSwitch = () => {

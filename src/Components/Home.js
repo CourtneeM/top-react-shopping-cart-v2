@@ -1,11 +1,14 @@
 import { Link } from 'react-router-dom';
+import '../styles/home.scss';
 
-const Home = (props) => {
+const Home = () => {
 
   return (
-    <div>
-      <h1>Welcome to {props.storeName}</h1>
-      <Link to="/shop">Check out our wares</Link>
+    <div className="home-container">
+      <h1>Welcome to <span>Bargain Shop</span></h1>
+      <Link to="/shop" className="default-link">
+        <p>Check out our wares</p>
+      </Link>
     </div>
   );
 };

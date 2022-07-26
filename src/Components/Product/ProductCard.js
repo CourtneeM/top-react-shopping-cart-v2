@@ -15,13 +15,13 @@ const ProductCard = (props) => {
   return (
     <div className="product-card-container">
       <img src={image} alt={name} />
-      <p>{name}</p>
-      <p>${price}</p>
-      <div>
-        <button onClick={decrementCount}>-</button>
-        <input type="text" value={count} onChange={(e) => handleCountChange(e.target.value)} />
-        <button onClick={incrementCount}>+</button>
-        <button onClick={() => count ? props.handleAddToCart(props.product, count) : null}>Add to cart</button>
+      <p className="product-name">{name}</p>
+      <p className="product-price">${price}</p>
+      <div className="quantity-btns">
+        <button className="decrement-btn" onClick={decrementCount}>-</button>
+        <input className="quantity-input" type="text" value={count} onChange={(e) => handleCountChange(e.target.value)} />
+        <button className="increment-btn" onClick={incrementCount}>+</button>
+        <button className="add-to-cart-btn" onClick={() => count ? props.handleAddToCart(props.product, count) : null}>Add to cart</button>
       </div>
     </div>
   );
